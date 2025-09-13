@@ -89,9 +89,11 @@ export const generateProductImage = async (
     settings: Settings,
     modelImageFile: File | null
 ): Promise<string> => {
+  // Fix: Use process.env.API_KEY as per the coding guidelines.
   if (!process.env.API_KEY) {
     throw new Error("API_KEY 환경 변수가 설정되지 않았습니다. Vercel 또는 호스팅 환경에서 설정을 확인해주세요.");
   }
+  // Fix: Initialize GoogleGenAI with process.env.API_KEY.
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const productImagePart = await fileToGenerativePart(productImageFile);
@@ -150,9 +152,11 @@ export const editProductImage = async (
     base64ImageUrl: string,
     editPrompt: string
 ): Promise<string> => {
+    // Fix: Use process.env.API_KEY as per the coding guidelines.
     if (!process.env.API_KEY) {
         throw new Error("API_KEY 환경 변수가 설정되지 않았습니다. Vercel 또는 호스팅 환경에서 설정을 확인해주세요.");
     }
+    // Fix: Initialize GoogleGenAI with process.env.API_KEY.
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
     const mimeType = base64ImageUrl.match(/data:(.*);base64,/)?.[1] ?? 'image/png';
